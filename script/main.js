@@ -1,6 +1,119 @@
+mapboxgl.accessToken='pk.eyJ1IjoicmFxdWVsaGhzOTkiLCJhIjoiY2tuMzJxb3FxMDR6cjJ2bzBkd2N5amJpcSJ9.zLNyz6b18G7orncHQpmS3g';
+
+var openweathermapUrl= 'http://api.openweathermap.org/data/2.5/weather';//?q=rotterdam&appid=//
+var openweathermapUrlApiKey='6ae79127a84b62401fdcb17d0227da0c';
+
+var cities = [ //2.10 uur//
+  {
+    name: 'Amsterdam',
+    coordinates:[4.895168, 52.370216]
+  },
+  {
+    name: 'Rotterdam',
+    coordinates: [4.47917, 51.9225]
+  },
+  {
+    name: 'Nijmegen',
+    coordinates: [5.85278, 51.8425]
+  },
+  {
+    name: 'Maastricht',
+    coordinates: [5.68889, 50.84833]
+  },
+  {
+    name: 'Groningen',
+    coordinates:[6.56667, 53.21917]
+  },
+  {
+    name: 'Enschede',
+    coordinates: [6.89583, 52.21833]
+  },
+  {
+    name: 'Tilburg',
+    coordinates: [5.0913, 51.55551]
+  },
+  {
+    name: 'Zwolle',
+    coordinates: [6.09444, 52.5125]
+  },
+  {
+    name: 'Terschellingen',
+    coordinates: [5.31527, 53.391354]
+  },
+  {
+    name: 'Middelburg',
+    coordinates: [3.610998, 51.4987962]
+  },
+  {
+    name: 'Sneek',
+    coordinates: [5.6589, 53.03297]
+  },
+];
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/outdoors-v11',
+  center: [5.508852, 52.142480],
+  zoom: 7
+});
+
+map.on('load', function(){
+  cities.forEach(function(city){
+    var request = 'https://api.openweathermap.org/data/2.5/weather?appid=' + openweathermapUrlApiKey + '&lon=' + city.coordinates[0] + '&lat=' + city.coordinates[1];
+
+    fetch(request)
+    .then(function(response){
+      if(!response.ok) throw Error(response.statusText);
+      return response.json();
+    })
+
+    .then(function(response){
+      plotImageOnMap(response.weather[0].icon, city)
+    })
+    .catch(function(error){
+      console.log('ERROR:', error);
+    });
+  });
+});
+
+function plotImageOnMap(icon, city){
+  map.loadImage(
+    'https://openweathermap.org/img/w/' + icon + '.png',
+    function (error, image){
+      if(error) throw error;
+      map.addImage("weatherIcon_" + city.name, image);
+      map.addSource("point_" + city.name, {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: city.coordinates
+            }
+          }]
+        }
+      });
+
+      map.addLayer({
+        id: "points_" + city.name,
+        type: "symbol",
+        source: "point_" + city.name,
+        layout: {
+          "icon-image": "weatherIcon_" + city.name,
+          "icon-size": 2
+        }
+      });
+    }
+  );
+}
+
+
+
 mapboxgl.accessToken = 'pk.eyJ1IjoicmFxdWVsaGhzOTkiLCJhIjoiY2tuMzJxb3FxMDR6cjJ2bzBkd2N5amJpcSJ9.zLNyz6b18G7orncHQpmS3g';
-    var map = new mapboxgl.Map({
-      container: 'map',
+    var weer = new mapboxgl.Map({
+      container: 'weer',
       style: 'mapbox://styles/raquelhhs99/ckn3334p50evj17mluogbwlgg',
       center: [-87.661557, 41.893748],
       zoom: 10.7
@@ -21,8 +134,16 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicmFxdWVsaGhzOTkiLCJhIjoiY2tuMzJxb3FxMDR6cjJ2b
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
-});
+    .addTo(weer);
+});0
+
+
+
+
+
+
+
+
 
 // // Formulier
 // function getAPIdata(){
