@@ -3,9 +3,18 @@ body {
   padding: 0;
 }
 
+
 #map {
   position: absolute;
   top: 0;
+  bottom: 0;
+  width: 20%;
+  height:20%;
+}
+
+#weer {
+  position: absolute;
+  top: 40%;
   bottom: 0;
   width: 20%;
   height:20%;
