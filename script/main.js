@@ -114,7 +114,7 @@ function plotImageOnMap(icon, city){
 mapboxgl.accessToken = 'pk.eyJ1IjoicmFxdWVsaGhzOTkiLCJhIjoiY2tuMzJxb3FxMDR6cjJ2bzBkd2N5amJpcSJ9.zLNyz6b18G7orncHQpmS3g';
     var weer = new mapboxgl.Map({
       container: 'weer',
-      style: 'mapbox://styles/raquelhhs99/ckn3334p50evj17mluogbwlgg',
+      style: 'mapbox://styles/raquelhhs99/ckn3334p50evj17mluogbwlgg', 
       center: [-87.661557, 41.893748],
       zoom: 10.7
     });
