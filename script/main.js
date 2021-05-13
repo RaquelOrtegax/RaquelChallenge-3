@@ -78,85 +78,6 @@ map.on('load', function(){
 
 
 
-
-
-
-// fox
-// function fox(){
-//   var request ='https://randomfox.ca/floof/?ref=apilist.fun';
-
-//   fetch(request)
-
-//   .then(function(response){
-//     return response.json();
-//   })
-
-//   .then(function(response){
-//     console.log(response.image); //.sprites toegevoegd
-//     var weatherBox = document.getElementById('fox');
-//     weatherBox.innerHTML = response.image;
-//   });
-
-// }
-
-// fox();
-
-
-
-
-
-
-
-function getAPIdata() {
-
-  // construct request
-  var request = 'https://api.thecatapi.com/v1/images/search';
-
-  // get current kitty
-  fetch(request)
-
-  // parse response to JSON format
-  .then(function(response) {
-    return response.json();
-  })
-
-  // do something with response
-  .then(function(response) {
-    // show full JSON object
-    console.log(response);
-    document.getElementById('foto').src= response[0].url;
-
-  });
-}
-
-// init data stream
-getAPIdata();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function plotImageOnMap(icon, city){
   map.loadImage(
     'https://openweathermap.org/img/w/' + icon + '.png',
@@ -191,6 +112,31 @@ function plotImageOnMap(icon, city){
 }
 
 
+// kattenfoto
+function getAPIdata() {
+
+  // construct request
+  var request = 'https://api.thecatapi.com/v1/images/search';
+
+  // get current kitty
+  fetch(request)
+
+  // parse response to JSON format
+  .then(function(response) {
+    return response.json();
+  })
+
+  // do something with response
+  .then(function(response) {
+    // show full JSON object
+    console.log(response);
+    document.getElementById('foto').src= response[0].url;
+
+  });
+}
+
+// init data stream
+getAPIdata();
 
 // tot hier
 

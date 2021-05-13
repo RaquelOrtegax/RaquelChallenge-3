@@ -5,52 +5,74 @@ body {
   transition: 400ms margin-left;
 }
 
-.containerLogo{
+header {
   display:flex;
   justify-content: center;
   margin:20px;
 }
 
-.logo>img{
-  width:300px;
+img {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.kaart{
+  grid-area: main;
+  opacity: 0.9;
+  border-width: 2px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.kattenfoto {
+  margin: 5px;
+  float:right;
+  width:20%;
+  margin-top:200px;
 }
 
 #map {
   position:absolute;
+  float: left;
   top: 12%;
   bottom: 3%;
-  width: 100%;
+  width: 70%;
   height:100%;
-
   box-sizing:border-box;
   padding:50px;
   color:white;
   border-style:solid;
-  border-color: #2b2b2b;
 }
 
-#fox{
-  width:500px;
-  height:500px;
+h2{
+  color:white;
 }
 
 @media screen and (max-width: 800px){
   #map {
-  bottom: 3%;
-  height:70%;
+    bottom: 3%;
+    height:70%;
+  }
+
+  .kattenfoto {
+    margin: 5px;
+    float:right;
+    width:20%;
+    height:auto;
+    margin-top:200px;
   }
 }
 
 @media screen and (min-width: 800px){
   #map {
-  bottom: 3%;
-  height:80%;
+    bottom: 3%;
+    height:80%;
   }
 }
 
 @media screen and (min-width: 1100px) {
   #map {
-  bottom: 3%;
-  height:100%;
+    bottom: 3%;
+    height:100%;
   }
 }
